@@ -1,0 +1,27 @@
+<button class="add-button"  (click)="getBack()">Back</button>
+<div class="result-box">
+  <h2>Result </h2>
+  <div class="table-container">
+    <table>
+      <tbody>
+        <tr>
+          <th>Roll No</th>
+          <td>{{ result.Roll_no }}</td>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <td>{{ result.Name }}</td>
+        </tr>
+        <tr>
+          <th>Date of Birth</th>
+          <td>{{ result.date_of_birth | date:'dd-MM-yyyy' }}</td>
+        </tr>
+        <tr>
+          <th>Score</th>
+          <td>{{ result.score }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+</div>

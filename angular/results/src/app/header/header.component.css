@@ -1,0 +1,20 @@
+nav {
+    background-color: aquamarine;
+    padding: 10px;
+}
+ul button{
+    float: right;
+    list-style-type: none;
+    color: black;
+    background-color: orange;
+    font-size: 20px;
+    cursor: pointer;
+   
+   
+
+}
+ul h1{
+    text-align: center;
+    color: black;
+    font-size: 40px;
+}
