@@ -28,5 +28,12 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube analysis'){
+            steps{
+                withSonarQubeEnv('sonarqube-10.4.1'){
+                    bat "mvn sonar:sonar"
+                }
+            }
+        }
     }
 }
