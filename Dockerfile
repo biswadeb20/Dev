@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
-ENV ARTIFACTORY_USERNAME
-ENV ARTIFACTORY_PASSWORD
+ARG ARTIFACTORY_USERNAME
+ARG ARTIFACTORY_PASSWORD
 
 SHELL ["powershell", "-Command"]
 
