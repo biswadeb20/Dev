@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore:ltsc2019
+FROM openjdk:17
 
 ARG ARTIFACTORY_USERNAME
 ARG ARTIFACTORY_PASSWORD
