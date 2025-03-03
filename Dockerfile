@@ -13,7 +13,7 @@ ENV SPRING_DATASOURCE_USERNAME=root
 ENV SPRING_DATASOURCE_PASSWORD=root
 
 # Download the JAR file from Artifactory
-RUN curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -o assignment.calculator-0.0.1-SNAPSHOT.jar "http://host.docker.internal:8081/artifactory/my-local-repo/target/assignment.calculator-0.0.1-SNAPSHOT.jar"
+RUN curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -o assignment.calculator-0.0.1-SNAPSHOT.jar "http://172.17.0.3:8081/artifactory/my-local-repo/target/assignment.calculator-0.0.1-SNAPSHOT.jar"
 
 
 ENTRYPOINT ["java", "-jar", "assignment.calculator-0.0.1-SNAPSHOT.jar"] 
