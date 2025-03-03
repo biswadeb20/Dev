@@ -1,15 +1,19 @@
-
 FROM tomcat:10.1-jdk17-openjdk
 EXPOSE 8080
- 
+
+# Install curl inside the container
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+
 ARG ARTIFACTORY_USERNAME
 ARG ARTIFACTORY_PASSWORD
-
 
 ENV SPRING_DATASOURCE_URL=jdbc:mysql://172.17.0.3:3306/calculator?useSSL=false
 ENV SPRING_DATASOURCE_USERNAME=root
 ENV SPRING_DATASOURCE_PASSWORD=root
- 
-RUN curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -o assignment.calculator-0.0.1-SNAPSHOT.jar "http://172.17.215.65:8082/artifactory/java/target/assignment.calculator-0.0.1-SNAPSHOT.jar"
- 
-ENTRYPOINT ["java", "-jar", "assignment.calculator-0.0.1-SNAPSHOT.jar"]
+
+# Download the JAR file from Artifactory
+RUN curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -o assignment.calculator-0.0.1-SNAPSHOT.jar "http://host.docker.internal:8081/artifactory/my-local-repo/target/assignment.calculator-0.0.1-SNAPSHOT.jar"
+
+
+ENTRYPOINT ["java", "-jar", "assignment.calculator-0.0.1-SNAPSHOT.jar"] 
