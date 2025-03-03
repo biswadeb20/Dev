@@ -1,17 +1,14 @@
-
 FROM tomcat:10.1-jdk17-openjdk
-
-ENV APP_HOME=/usr/src/app
-WORKDIR $APP_HOME
-
-# Copy application JAR
-COPY target/calculator-app.jar calculator-app.jar
-
-# Install MySQL client (optional, for debugging)
-RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt/lists/*
-
-# Expose the port
 EXPOSE 8080
 
-# Start application
-ENTRYPOINT ["java", "-jar", "calculator-app.jar"]
+ARG ARTIFACTORY_USERNAME
+ARG ARTIFACTORY_PASSWORD
+
+ENV SPRING_DATASOURCE_URL=jdbc:mysql://172.17.0.3:3306/calculator?useSSL=false
+ENV SPRING_DATASOURCE_USERNAME=root
+ENV SPRING_DATASOURCE_PASSWORD=root
+
+# Download the JAR file from Artifactory
+RUN curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -o assignment.calculator-0.0.1-SNAPSHOT.jar "http://localhost:8081/artifactory/my-local-repo/target/assignment.calculator-0.0.1-SNAPSHOT.jar"
+
+ENTRYPOINT ["java", "-jar", "assignment.calculator-0.0.1-SNAPSHOT.jar"]
